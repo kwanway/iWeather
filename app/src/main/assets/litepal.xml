@@ -1,0 +1,12 @@
+<litepal>
+
+    <dbname value="iweather" />
+    <version value="1" />
+
+    <list>
+        <mapping class="com.kwanway.iweather.db.Provice" />
+        <mapping class="com.kwanway.iweather.db.City" />
+        <mapping class="com.kwanway.iweather.db.County" />
+    </list>
+
+</litepal>
