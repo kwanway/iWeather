@@ -1,5 +1,6 @@
 package com.kwanway.iweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kwanway.iweather.gson.Forecast;
 import com.kwanway.iweather.gson.Weather;
+import com.kwanway.iweather.service.AutoUpdateService;
 import com.kwanway.iweather.util.HttpUtil;
 import com.kwanway.iweather.util.Utility;
 
@@ -228,6 +230,10 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carwash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+
+        // Start Auto refresh service
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
     /**
