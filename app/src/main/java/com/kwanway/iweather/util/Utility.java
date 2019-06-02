@@ -2,9 +2,11 @@ package com.kwanway.iweather.util;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.kwanway.iweather.db.City;
 import com.kwanway.iweather.db.County;
 import com.kwanway.iweather.db.Provice;
+import com.kwanway.iweather.gson.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -88,4 +90,24 @@ public class Utility {
         }
         return false;
     }
+
+    /**
+     * Parse JSON data to weather instance
+     */
+    public static Weather handleWeatherResponse(String response) {
+
+        try {
+
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
